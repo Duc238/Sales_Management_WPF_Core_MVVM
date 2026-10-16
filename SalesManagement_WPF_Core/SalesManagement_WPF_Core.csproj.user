@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>D:\Programmer\.NET Core\SalesManagement_WPF_Core\SalesManagement_WPF_Core\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="DucUserControl\ucControlBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DucUserControl\ucListCustomer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DucUserControl\ucListObject.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DucUserControl\ucListSuplier.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DucUserControl\ucListUnit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DucUserControl\ucRevenueReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

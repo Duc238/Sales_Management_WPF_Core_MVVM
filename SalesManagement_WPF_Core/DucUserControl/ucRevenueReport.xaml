@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="SalesManagement_WPF_Core.DucUserControl.ucRevenueReport"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:ViewModel="clr-namespace:SalesManagement_WPF_Core.ViewModel"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:Conveter="clr-namespace:SalesManagement_WPF_Core.Converters"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Conveter:BooleanToColorConverter x:Key="BooleanToColorConverter"/>
+    </UserControl.Resources>
+<UserControl.DataContext>
+        <ViewModel:ReportViewModel/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Khu vực 3 Thẻ Card -->
+            <RowDefinition Height="*"/>
+            <!-- Khu vực Biểu đồ -->
+        </Grid.RowDefinitions>
+
+        <!-- AREA 1: 3 THẺ CARD DOANH THU & SO SÁNH -->
+        <materialDesign:Card Grid.Row="0" Margin="5" Padding="12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- 1. DOANH THU NGÀY -->
+                <Border Grid.Column="0" Background="#E3F2FD" CornerRadius="6" Padding="10" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="DOANH THU NGÀY" FontSize="11" FontWeight="Bold" Foreground="#1976D2"/>
+
+                        <!-- Chọn Ngày/Tháng/Năm (Giữ nguyên cũ) -->
+                        <Grid Margin="0 8 0 8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox Grid.Column="0" Margin="2" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Ngày" ItemsSource="{Binding DayList}" SelectedValue="{Binding SelectedDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox Grid.Column="1" Margin="2" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tháng" ItemsSource="{Binding MonthList}" SelectedValue="{Binding SelectedMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox Grid.Column="2" Margin="2" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Năm" ItemsSource="{Binding YearList}" SelectedValue="{Binding SelectedYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+
+                        <TextBlock Text="{Binding DailyRevenue, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0} VNĐ}" FontSize="16" FontWeight="Bold" Foreground="#0D47A1"/>
+
+                        <!-- THÊM: PHẦN SO SÁNH NGÀY HÔM TRƯỚC -->
+                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                            <!-- Hiển thị % -->
+                            <TextBlock Text="{Binding DailyChangePercent, StringFormat={}{0:P1}}" FontSize="11" VerticalAlignment="Center" FontWeight="Medium"
+                                       Foreground="{Binding DailyIsUp, Converter={StaticResource BooleanToColorConverter}}"/>
+                            <!-- Hiển thị Mũi tên -->
+                            <materialDesign:PackIcon Kind="{Binding DailyArrowKind}" VerticalAlignment="Center" Margin="3 0 0 0"
+                                                    Foreground="{Binding DailyIsUp, Converter={StaticResource BooleanToColorConverter}}"/>
+                            <TextBlock Text="so với ngày trước" FontSize="10" Foreground="#616161" Margin="3 0 0 0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- 2. DOANH THU THÁNG -->
+                <Border Grid.Column="1" Background="#E8F5E9" CornerRadius="6" Padding="10" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="DOANH THU THÁNG" FontSize="11" FontWeight="Bold" Foreground="#388E3C"/>
+
+                        <!-- Chỉ chọn Tháng/Năm (Giữ nguyên cũ) -->
+                        <Grid Margin="0 8 0 8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox Grid.Column="0" Margin="2" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tháng" ItemsSource="{Binding MonthList}" SelectedValue="{Binding SelectedMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox Grid.Column="1" Margin="2" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Năm" ItemsSource="{Binding YearList}" SelectedValue="{Binding SelectedYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+
+                        <TextBlock Text="{Binding MonthlyRevenue, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0} VNĐ}" FontSize="16" FontWeight="Bold" Foreground="#1B5E20"/>
+
+                        <!-- THÊM: PHẦN SO SÁNH THÁNG TRƯỚC -->
+                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                            <TextBlock Text="{Binding MonthlyChangePercent, StringFormat={}{0:P1}}" FontSize="11" VerticalAlignment="Center" FontWeight="Medium"
+                                       Foreground="{Binding MonthlyIsUp, Converter={StaticResource BooleanToColorConverter}}"/>
+                            <materialDesign:PackIcon Kind="{Binding MonthlyArrowKind}" VerticalAlignment="Center" Margin="3 0 0 0"
+                                                    Foreground="{Binding MonthlyIsUp, Converter={StaticResource BooleanToColorConverter}}"/>
+                            <TextBlock Text="so với tháng trước" FontSize="10" Foreground="#616161" Margin="3 0 0 0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- 3. DOANH THU NĂM -->
+                <Border Grid.Column="2" Background="#FFF3E0" CornerRadius="6" Padding="10" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="DOANH THU NĂM" FontSize="11" FontWeight="Bold" Foreground="#F57C00"/>
+
+                        <!-- Chỉ chọn Năm (Giữ nguyên cũ) -->
+                        <ComboBox Margin="0 8 0 8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Năm" ItemsSource="{Binding YearList}" SelectedValue="{Binding SelectedYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="{Binding YearlyRevenue, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0} VNĐ}" FontSize="16" FontWeight="Bold" Foreground="#E65100"/>
+
+                        <!-- THÊM: PHẦN SO SÁNH NĂM TRƯỚC -->
+                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                            <TextBlock Text="{Binding YearlyChangePercent, StringFormat={}{0:P1}}" FontSize="11" VerticalAlignment="Center" FontWeight="Medium"
+                                       Foreground="{Binding YearlyIsUp, Converter={StaticResource BooleanToColorConverter}}"/>
+                            <materialDesign:PackIcon Kind="{Binding YearlyArrowKind}" VerticalAlignment="Center" Margin="3 0 0 0"
+                                                    Foreground="{Binding YearlyIsUp, Converter={StaticResource BooleanToColorConverter}}"/>
+                            <TextBlock Text="so với năm trước" FontSize="10" Foreground="#616161" Margin="3 0 0 0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </materialDesign:Card>
+
+        <!-- AREA 2: BIỂU ĐỒ DOANH THU -->
+        <materialDesign:Card Grid.Row="1" Margin="5" Padding="12">
+            <!-- Thêm Height="320" và Margin cho biểu đồ -->
+            <lvc:CartesianChart Series="{Binding ChartSeries}" 
+                        LegendLocation="Right" 
+                        Height="320" 
+                        Margin="10">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Doanh thu (VNĐ)" LabelFormatter="{Binding YAxisLabelFormatter}"/>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels="{Binding XAxisLabels}"/>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+        </materialDesign:Card>
+
+    </Grid>
+</UserControl>

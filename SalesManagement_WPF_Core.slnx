@@ -1,0 +1,14 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="DefaultBuild" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Project Path="SalesManagementInstaller/SalesManagementInstaller.aiproj" Type="840c416c-b8f3-42bc-b0dd-f6bb14c9f8cb" Id="0e641895-d9f9-4133-ba06-3a4dc54143fb">
+    <BuildType Project="DefaultBuild" />
+    <Platform Project="?" />
+  </Project>
+  <Project Path="SalesManagement_WPF_Core/SalesManagement_WPF_Core.csproj">
+    <BuildType Solution="DefaultBuild|*" Project="Release" />
+  </Project>
+</Solution>

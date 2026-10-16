@@ -1,0 +1,20 @@
+﻿SalesManagement_WPF_Core
+
+
+winexe
+C#
+.cs
+D:\Programmer\.NET Core\SalesManagement_WPF_Core\SalesManagement_WPF_Core\obj\Release\net8.0-windows\win-x64\
+SalesManagement_WPF_Core
+none
+false
+TRACE;RELEASE;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+D:\Programmer\.NET Core\SalesManagement_WPF_Core\SalesManagement_WPF_Core\App.xaml
+7-570945150
+222123425737
+34187914716
+244-480744484
+DucUserControl\ucControlBar.xaml;DucUserControl\ucListCustomer.xaml;DucUserControl\ucListObject.xaml;DucUserControl\ucListSuplier.xaml;DucUserControl\ucListUnit.xaml;DucUserControl\ucRevenueReport.xaml;MainWindow.xaml;
+
+False
+

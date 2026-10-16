@@ -1,0 +1,81 @@
+﻿<Window x:Class="SalesManagement_WPF_Core.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesManagement_WPF_Core"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:b="clr-namespace:SalesManagement_WPF_Core.Behaviors"
+        xmlns:UserControl="clr-namespace:SalesManagement_WPF_Core.DucUserControl"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        x:Name="window"
+        Title="Phần mềm quản lý bán hàng" Height="450" Width="800">
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Control Bar tùy chỉnh -->
+        <UserControl:ucControlBar Grid.Row="0" Tag="{Binding Title, ElementName=window}"/>
+        <!-- View chính của phần mềm -->
+        <Grid Grid.Row="1">
+            <Image Source="/Images/download.jpg"></Image>
+        </Grid>
+
+        <!-- ================= VÙNG BẮT EVENT RESIZE (4 GÓC & 4 CẠNH) ================= -->
+        <!-- Đặt trên Grid gốc để chúng luôn nằm trên cùng và bao phủ toàn bộ cửa sổ -->
+
+        <!-- 4 Cạnh -->
+        <Rectangle Width="6" HorizontalAlignment="Left" Cursor="SizeWE" Fill="Transparent">
+            <i:Interaction.Behaviors>
+                <b:ManualResizeBehavior Direction="Left" />
+            </i:Interaction.Behaviors>
+        </Rectangle>
+        <Rectangle Width="6" HorizontalAlignment="Right" Cursor="SizeWE" Fill="Transparent">
+            <i:Interaction.Behaviors>
+                <b:ManualResizeBehavior Direction="Right" />
+            </i:Interaction.Behaviors>
+        </Rectangle>
+        <Rectangle Height="6" VerticalAlignment="Top" Cursor="SizeNS" Fill="Transparent">
+            <i:Interaction.Behaviors>
+                <b:ManualResizeBehavior Direction="Top" />
+            </i:Interaction.Behaviors>
+        </Rectangle>
+        <Rectangle Height="6" VerticalAlignment="Bottom" Cursor="SizeNS" Fill="Transparent">
+            <i:Interaction.Behaviors>
+                <b:ManualResizeBehavior Direction="Bottom" />
+            </i:Interaction.Behaviors>
+        </Rectangle>
+
+        <!-- 4 Góc (Góc thường lớn hơn một chút để dễ kéo) -->
+        <!-- Top-Left -->
+        <Rectangle Width="10" Height="10" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeNWSE" Fill="Transparent">
+            <i:Interaction.Behaviors>
+                <b:ManualResizeBehavior Direction="TopLeft" />
+            </i:Interaction.Behaviors>
+        </Rectangle>
+        <!-- Top-Right -->
+        <Rectangle Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="SizeNESW" Fill="Transparent">
+            <i:Interaction.Behaviors>
+                <b:ManualResizeBehavior Direction="TopRight" />
+            </i:Interaction.Behaviors>
+        </Rectangle>
+        <!-- Bottom-Left -->
+        <Rectangle Width="10" Height="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Cursor="SizeNESW" Fill="Transparent">
+            <i:Interaction.Behaviors>
+                <b:ManualResizeBehavior Direction="BottomLeft" />
+            </i:Interaction.Behaviors>
+        </Rectangle>
+        <!-- Bottom-Right -->
+        <Rectangle Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Cursor="SizeNWSE" Fill="Transparent">
+            <i:Interaction.Behaviors>
+                <b:ManualResizeBehavior Direction="BottomRight" />
+            </i:Interaction.Behaviors>
+        </Rectangle>
+    </Grid>
+</Window>
